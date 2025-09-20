@@ -171,13 +171,12 @@ const About = () => {
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-reveal mb-16 text-center">Design Process</h2>
-          <div className="overflow-x-auto">
-            <div className="flex space-x-8 pb-4" style={{ minWidth: 'max-content' }}>
-              {designProcess.map((process, index) => (
+          <div className="relative overflow-hidden">
+            <div className="flex space-x-8 animate-scroll-left" style={{ width: 'calc(200% + 2rem)' }}>
+              {[...designProcess, ...designProcess].map((process, index) => (
                 <div 
-                  key={process.step}
-                  className="min-w-80 bg-card border border-border rounded-lg p-8 hover-glow slide-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  key={`${process.step}-${index}`}
+                  className="min-w-80 bg-card border border-border rounded-lg p-8 hover-glow flex-shrink-0"
                 >
                   <div className="text-4xl mb-4">{process.icon}</div>
                   <div className="flex items-center mb-4">

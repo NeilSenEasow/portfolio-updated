@@ -72,19 +72,21 @@ const Home = () => {
               innovative solutions that make a difference.
             </p>
             
-            {/* Social Links & CTA */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 slide-up">
-              <div className="flex items-center space-x-6">
-                <a href="https://github.com" className="text-muted-foreground hover:text-neon transition-colors">
-                  GitHub
-                </a>
-                <a href="https://linkedin.com" className="text-muted-foreground hover:text-neon transition-colors">
-                  LinkedIn
-                </a>
-                <a href="https://twitter.com" className="text-muted-foreground hover:text-neon transition-colors">
-                  Twitter
-                </a>
-              </div>
+            {/* Social Links */}
+            <div className="flex items-center space-x-6 slide-up mb-8">
+              <a href="https://github.com" className="text-muted-foreground hover:text-neon transition-colors">
+                GitHub
+              </a>
+              <a href="https://linkedin.com" className="text-muted-foreground hover:text-neon transition-colors">
+                LinkedIn
+              </a>
+              <a href="https://twitter.com" className="text-muted-foreground hover:text-neon transition-colors">
+                Twitter
+              </a>
+            </div>
+            
+            {/* CTA Button */}
+            <div className="flex justify-end slide-up">
               <Button asChild variant="hero" size="lg">
                 <NavLink to="/about">
                   Know me better <ArrowRight className="ml-2 w-4 h-4" />
@@ -176,13 +178,12 @@ const Home = () => {
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-reveal mb-8 text-center">Skills & Technologies</h2>
-          <div className="overflow-x-auto">
-            <div className="flex space-x-4 pb-4" style={{ width: 'max-content' }}>
-              {skills.map((skill, index) => (
+          <div className="relative overflow-hidden">
+            <div className="flex space-x-4 animate-scroll-left" style={{ width: 'calc(200% + 1rem)' }}>
+              {[...skills, ...skills].map((skill, index) => (
                 <div
-                  key={skill}
-                  className="skill-tag whitespace-nowrap slide-up"
-                  style={{ animationDelay: `${index * 0.05}s` }}
+                  key={`${skill}-${index}`}
+                  className="skill-tag whitespace-nowrap flex-shrink-0"
                 >
                   {skill}
                 </div>

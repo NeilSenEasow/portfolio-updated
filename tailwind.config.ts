@@ -146,6 +146,14 @@ export default {
             opacity: "1",
           },
         },
+        "scroll-left": {
+          "0%": {
+            transform: "translateX(0)",
+          },
+          "100%": {
+            transform: "translateX(-100%)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -156,6 +164,7 @@ export default {
         "text-reveal": "text-reveal 0.8s ease-out forwards",
         "slide-up": "slide-up 0.6s ease-out forwards",
         "fade-in": "fade-in 0.5s ease-out forwards",
+        "scroll-left": "scroll-left 20s linear infinite",
       },
     },
   },

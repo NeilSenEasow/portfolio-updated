@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,6 +60,15 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom portfolio colors
+        neon: {
+          DEFAULT: "hsl(var(--neon-green))",
+          glow: "hsl(var(--neon-green-glow))",
+        },
+        surface: {
+          DEFAULT: "hsl(var(--dark-surface))",
+          dark: "hsl(var(--darker-surface))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,10 +92,70 @@ export default {
             height: "0",
           },
         },
+        glow: {
+          "0%, 100%": { 
+            boxShadow: "0 0 5px hsl(var(--neon-green) / 0.3), 0 0 10px hsl(var(--neon-green) / 0.2), 0 0 15px hsl(var(--neon-green) / 0.1)",
+          },
+          "50%": { 
+            boxShadow: "0 0 10px hsl(var(--neon-green) / 0.5), 0 0 20px hsl(var(--neon-green) / 0.3), 0 0 30px hsl(var(--neon-green) / 0.2)",
+          },
+        },
+        "pulse-dot": {
+          "0%, 100%": { 
+            transform: "scale(1)",
+            opacity: "1",
+          },
+          "50%": { 
+            transform: "scale(1.1)",
+            opacity: "0.8",
+          },
+        },
+        "rotate-text": {
+          from: {
+            transform: "rotate(0deg)",
+          },
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
+        "text-reveal": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        "slide-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(40px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        "fade-in": {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        glow: "glow 2s ease-in-out infinite alternate",
+        "pulse-dot": "pulse-dot 2s ease-in-out infinite",
+        "rotate-text": "rotate-text 20s linear infinite",
+        "text-reveal": "text-reveal 0.8s ease-out forwards",
+        "slide-up": "slide-up 0.6s ease-out forwards",
+        "fade-in": "fade-in 0.5s ease-out forwards",
       },
     },
   },

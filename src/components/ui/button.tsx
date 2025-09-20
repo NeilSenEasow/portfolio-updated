@@ -15,11 +15,16 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Custom portfolio variants
+        hero: "bg-transparent border-2 border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 font-medium",
+        neon: "bg-neon text-background hover:bg-neon/80 font-medium shadow-lg hover:shadow-neon/25",
+        "neon-outline": "border-2 border-neon text-neon bg-transparent hover:bg-neon hover:text-background transition-all duration-300 font-medium",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
+        xl: "h-14 rounded-lg px-10 text-base",
         icon: "h-10 w-10",
       },
     },

@@ -63,7 +63,7 @@ const About = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Profile Image with Rotating Text */}
-            <div className="relative flex justify-center">
+            <div className="relative flex justify-center -mt-60">
               <div className="relative">
                 <div className="w-80 h-80 rounded-full overflow-hidden border-4 border-neon">
                   <img 
@@ -120,20 +120,31 @@ const About = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-reveal mb-8 text-center">Skills & Technologies</h2>
-          <div className="overflow-x-auto">
-            <div className="flex space-x-4 pb-4 justify-center" style={{ width: 'max-content' }}>
-              {skills.map((skill, index) => (
-                <div
-                  key={skill}
-                  className="skill-tag whitespace-nowrap slide-up"
-                  style={{ animationDelay: `${index * 0.05}s` }}
-                >
-                  {skill}
-                </div>
-              ))}
+          <h2 className="text-reveal mb-12 text-center">Skills & Technologies</h2>
+          <div className="relative w-full">
+            <div className="relative flex overflow-hidden">
+              <div className="flex animate-scroll">
+                {[...skills, ...skills, ...skills].map((skill, index) => (
+                  <div
+                    key={`${skill}-${index}`}
+                    className="mx-4 px-6 py-3 bg-muted rounded-full text-sm font-medium whitespace-nowrap flex-shrink-0"
+                  >
+                    {skill}
+                  </div>
+                ))}
+              </div>
+              <div className="flex animate-scroll" aria-hidden="true">
+                {[...skills, ...skills, ...skills].map((skill, index) => (
+                  <div
+                    key={`${skill}-${index}-duplicate`}
+                    className="mx-4 px-6 py-3 bg-muted rounded-full text-sm font-medium whitespace-nowrap flex-shrink-0"
+                  >
+                    {skill}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

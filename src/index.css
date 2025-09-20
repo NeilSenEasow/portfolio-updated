@@ -248,6 +248,36 @@
   }
 
   .nav-link:hover::after,
+
+  /* Skills scroll animation */
+  .animate-scroll {
+    display: flex;
+    width: max-content;
+    animation: scroll 20s linear infinite;
+  }
+
+  .animate-scroll:nth-child(2) {
+    animation: scroll2 20s linear infinite;
+    animation-delay: -10s;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% - 1rem));
+    }
+  }
+
+  @keyframes scroll2 {
+    0% {
+      transform: translateX(calc(100% + 1rem));
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
   .nav-link.active::after {
     width: 100%;
   }

@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between">
           {/* Copyright */}
           <div className="text-muted-foreground text-sm">
-            © 2024 DC Portfolio. All rights reserved.
+            © 2025 DC Portfolio. All rights reserved.
           </div>
 
           {/* Social Links */}

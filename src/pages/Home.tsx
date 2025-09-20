@@ -1,9 +1,12 @@
-import { ArrowRight, ExternalLink, Code2, Palette, Zap } from 'lucide-react';
+import { useState } from 'react';
+import { ExternalLink, Code2, Palette, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NavLink } from 'react-router-dom';
 import projectEcommerce from '@/assets/project-ecommerce.jpg';
 import projectBanking from '@/assets/project-banking.jpg';
 import projectTasks from '@/assets/project-tasks.jpg';
+import ProjectModal from '@/components/ProjectModal';
+import { Project } from '@/types/project';
 
 const Home = () => {
   const skills = [
@@ -11,14 +14,25 @@ const Home = () => {
     'PostgreSQL', 'AWS', 'Docker', 'Figma', 'Tailwind CSS', 'MongoDB'
   ];
 
-  const projects = [
+  const projects: Project[] = [
     {
       id: 1,
       title: 'E-Commerce Platform',
       category: 'Full Stack Development',
       year: '2024',
       image: projectEcommerce,
-      type: 'desktop'
+      type: 'desktop',
+      description: 'A full-featured e-commerce platform with user authentication, product catalog, shopping cart, and payment integration.',
+      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Redux'],
+      features: [
+        'User authentication and authorization',
+        'Product catalog with filtering and search',
+        'Shopping cart functionality',
+        'Secure payment processing',
+        'Order history and tracking'
+      ],
+      githubUrl: 'https://github.com/username/ecommerce-platform',
+      liveUrl: 'https://ecommerce-demo.com'
     },
     {
       id: 2,
@@ -26,7 +40,18 @@ const Home = () => {
       category: 'UI/UX Design',
       year: '2024',
       image: projectBanking,
-      type: 'mobile'
+      type: 'mobile',
+      description: 'A modern mobile banking application with a focus on user experience and security.',
+      technologies: ['Figma', 'Adobe XD', 'React Native', 'Node.js'],
+      features: [
+        'Intuitive transaction interface',
+        'Biometric authentication',
+        'Budget tracking',
+        'Bill payments and transfers',
+        'Real-time notifications'
+      ],
+      githubUrl: 'https://github.com/username/banking-app',
+      liveUrl: 'https://banking-app-demo.com'
     },
     {
       id: 3,
@@ -34,7 +59,18 @@ const Home = () => {
       category: 'Frontend Development',
       year: '2023',
       image: projectTasks,
-      type: 'desktop'
+      type: 'desktop',
+      description: 'A personal portfolio website to showcase my projects and skills with a clean, modern design.',
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+      features: [
+        'Responsive design',
+        'Project showcase',
+        'Skills visualization',
+        'Contact form',
+        'Dark/light mode'
+      ],
+      githubUrl: 'https://github.com/username/portfolio',
+      liveUrl: 'https://myportfolio.com'
     }
   ];
 
@@ -56,8 +92,21 @@ const Home = () => {
     }
   ];
 
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen">
+      <ProjectModal 
+        project={selectedProject} 
+        isOpen={isModalOpen} 
+        onOpenChange={setIsModalOpen} 
+      />
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -72,7 +121,8 @@ const Home = () => {
               innovative solutions that make a difference.
             </p>
             
-            {/* Social Links */}
+            <div>
+              {/* Social Links */}
             <div className="flex items-center space-x-6 slide-up mb-8">
               <a href="https://github.com" className="text-muted-foreground hover:text-neon transition-colors">
                 GitHub
@@ -86,19 +136,20 @@ const Home = () => {
             </div>
             
             {/* CTA Button */}
-            <div className="flex justify-end slide-up">
+            {/* <div className="flex justify-end slide-up">
               <Button asChild variant="hero" size="lg">
                 <NavLink to="/about">
                   Know me better <ArrowRight className="ml-2 w-4 h-4" />
                 </NavLink>
               </Button>
-            </div>
+            </div> */}
           </div>
+            </div>
         </div>
       </section>
 
       {/* Selected Projects */}
-      <section className="py-20 px-6">
+      <section id="projects" className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <h2 className="text-reveal mb-4">Selected Projects</h2>
@@ -111,14 +162,15 @@ const Home = () => {
             {projects.map((project, index) => (
               <div 
                 key={project.id} 
-                className="project-card p-6 hover-glow"
+                className="project-card p-6 hover-glow cursor-pointer transition-all duration-300 hover:scale-[1.02]"
                 style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => handleProjectClick(project)}
               >
                 <div className="aspect-[4/3] bg-muted rounded-lg mb-4 overflow-hidden">
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
@@ -126,13 +178,15 @@ const Home = () => {
                   <span>{project.category}</span>
                   <span>{project.year}</span>
                 </div>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="mt-4 p-0 h-auto text-neon hover:text-neon/80"
-                >
-                  View Project <ExternalLink className="ml-2 w-4 h-4" />
-                </Button>
+                <div className="mt-4">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="p-0 h-auto text-neon hover:text-neon/80"
+                  >
+                    View Details <ExternalLink className="ml-2 w-4 h-4" />
+                  </Button>
+                </div>
               </div>
             ))}
           </div>
@@ -175,19 +229,31 @@ const Home = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-reveal mb-8 text-center">Skills & Technologies</h2>
-          <div className="relative overflow-hidden">
-            <div className="flex space-x-4 animate-scroll-left" style={{ width: 'calc(200% + 1rem)' }}>
-              {[...skills, ...skills].map((skill, index) => (
-                <div
-                  key={`${skill}-${index}`}
-                  className="skill-tag whitespace-nowrap flex-shrink-0"
-                >
-                  {skill}
-                </div>
-              ))}
+          <h2 className="text-reveal mb-12 text-center">Skills & Technologies</h2>
+          <div className="relative w-full">
+            <div className="relative flex overflow-hidden">
+              <div className="flex animate-scroll">
+                {[...skills, ...skills, ...skills].map((skill, index) => (
+                  <div
+                    key={`${skill}-${index}`}
+                    className="mx-4 px-6 py-3 bg-muted rounded-full text-sm font-medium whitespace-nowrap flex-shrink-0"
+                  >
+                    {skill}
+                  </div>
+                ))}
+              </div>
+              <div className="flex animate-scroll" aria-hidden="true">
+                {[...skills, ...skills, ...skills].map((skill, index) => (
+                  <div
+                    key={`${skill}-${index}-duplicate`}
+                    className="mx-4 px-6 py-3 bg-muted rounded-full text-sm font-medium whitespace-nowrap flex-shrink-0"
+                  >
+                    {skill}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

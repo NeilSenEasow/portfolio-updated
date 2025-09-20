@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+// import Chatbot from "./components/Chatbot/Chatbot";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
+        {/* <Chatbot /> */}
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

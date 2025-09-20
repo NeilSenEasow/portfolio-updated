@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { MessageCircle } from 'lucide-react';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -32,11 +31,6 @@ const Layout = () => {
       </main>
       
       <Footer />
-
-      {/* Floating Chat Bubble */}
-      <button className="chat-bubble" aria-label="Start chat">
-        <MessageCircle className="w-6 h-6" />
-      </button>
     </div>
   );
 };

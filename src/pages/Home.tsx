@@ -219,11 +219,11 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            <div className="bg-muted rounded-lg p-8 fade-in">
+            {/* <div className="bg-muted rounded-lg p-8 fade-in">
               <div className="aspect-square bg-surface rounded-lg flex items-center justify-center">
                 <span className="text-6xl text-muted-foreground">📊</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
